@@ -1,0 +1,124 @@
+:root {
+  --bg: #1e2a38;
+  --card: #2a3b4d;
+  --card-2: #33455a;
+  --accent: #4ea8ff;
+  --text: #f0f4f8;
+  --muted: #9fb0c3;
+  --border: #3c4d63;
+  --shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.app { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+
+.header { margin-bottom: 24px; }
+.header h1 { font-size: 2rem; font-weight: 600; margin-bottom: 12px; }
+
+.search { position: relative; max-width: 520px; }
+
+#search-input {
+  width: 100%;
+  padding: 12px 44px 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+#search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(78,168,255,.2); }
+
+.locate-btn {
+  position: absolute;
+  right: 6px; top: 50%;
+  transform: translateY(-50%);
+  background: transparent; border: none; cursor: pointer;
+  font-size: 1.2rem; padding: 6px 8px; border-radius: 999px;
+  color: var(--muted);
+}
+.locate-btn:hover { background: var(--card-2); color: var(--text); }
+
+.search-results {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; box-shadow: var(--shadow);
+  list-style: none; max-height: 260px; overflow-y: auto; z-index: 10;
+  display: none;
+}
+.search-results.show { display: block; }
+.search-results li {
+  padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border);
+}
+.search-results li:last-child { border-bottom: none; }
+.search-results li:hover { background: var(--card-2); }
+.search-results li small { color: var(--muted); display: block; margin-top: 2px; }
+
+#main .loading, .empty { text-align: center; color: var(--muted); padding: 60px 16px; font-size: 1rem; }
+
+.current {
+  background: var(--card); border-radius: 16px; padding: 24px;
+  box-shadow: var(--shadow); margin-bottom: 24px;
+}
+.current .loc { font-size: 1.1rem; color: var(--muted); margin-bottom: 8px; }
+.current .loc b { color: var(--text); }
+.current .temp { font-size: 3.2rem; font-weight: 300; margin: 8px 0 4px; }
+.current .cond { color: var(--muted); font-size: 1.05rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.current .cond svg { width: 1.4em; height: 1.4em; vertical-align: -0.1em; }
+.current .details {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+.current .details div {
+  background: var(--card-2); border-radius: 12px; padding: 12px;
+}
+.current .details .lbl { font-size: .78rem; color: var(--muted); }
+.current .details .val { font-size: 1.05rem; margin-top: 2px; }
+
+.forecast h2 {
+  font-size: 1.15rem; margin: 8px 0 16px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+
+.weekly { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.day {
+  background: var(--card); border-radius: 12px; padding: 14px 10px;
+  text-align: center; box-shadow: var(--shadow);
+}
+.day .d { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
+.day .ic { margin-bottom: 8px; line-height: 1; }
+.day .ic svg { width: 1.6em; height: 1.6em; display: block; margin: 0 auto; }
+.day .hi { font-weight: 600; }
+.day .lo { color: var(--muted); font-size: .9rem; }
+.day .rain { font-size: .78rem; color: var(--accent); margin-top: 6px; }
+
+.hourly-wrap { margin-top: 32px; }
+.hourly {
+  display: flex; gap: 10px; overflow-x: auto; padding: 8px 4px;
+  scrollbar-width: thin;
+}
+.hourly::-webkit-scrollbar { height: 6px; }
+.hourly::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+.hour {
+  flex: 0 0 auto; background: var(--card); border-radius: 12px;
+  padding: 14px 16px; text-align: center; min-width: 84px;
+}
+.hour .t { font-size: .8rem; color: var(--muted); }
+.hour .ic { margin: 6px 0; line-height: 1; }
+.hour .ic svg { width: 1.3em; height: 1.3em; display: block; margin: 0 auto; }
+.hour .temp { font-weight: 600; }
+
+@media (max-width: 520px) {
+  .current .details { grid-template-columns: repeat(2, 1fr); }
+  .current .temp { font-size: 2.4rem; }
+  .weekly { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Weather</h1>
+      <div class="search">
+        <input id="search-input" type="text" placeholder="Search city..." autocomplete="off" spellcheck="false">
+        <button id="locate-btn" class="locate-btn" title="Use my location" aria-label="Use my location">
+          📍
+        </button>
+        <div id="search-results" class="search-results" role="listbox"></div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="loading">Search for a city to see the weather</div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
